@@ -1,7 +1,9 @@
 package com.inz.citymonitor.presentation.base
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.inz.citymonitor.presentation.activities.MainActivityInterface
@@ -15,11 +17,15 @@ abstract class BaseFragment : Fragment() {
     var drawerLayout: DrawerLayout? = null
 
     var actions: MainActivityInterface? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setTopBarTitle()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            actions = context as? MainInterface
+            actions = context as? MainActivityInterface
         } catch (e: Exception) {
             throw IllegalStateException("Main fragment must implement correct action interface")
         }

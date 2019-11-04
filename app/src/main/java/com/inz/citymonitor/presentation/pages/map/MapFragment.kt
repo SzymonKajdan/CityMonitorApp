@@ -27,6 +27,7 @@ class MapFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         singUpButton.setOnClickListener { findNavController().navigate(R.id.singUpFragment) }
 
+
     }
 
 
