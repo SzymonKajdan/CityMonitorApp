@@ -17,9 +17,12 @@ abstract class BaseFragment : Fragment() {
     var drawerLayout: DrawerLayout? = null
 
     var actions: MainActivityInterface? = null
+
+    abstract  fun setTopBarTitle(): String?
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTopBarTitle()
+        topBar?.setTopBarTitle(setTopBarTitle())
     }
 
     override fun onAttach(context: Context) {
@@ -32,7 +35,7 @@ abstract class BaseFragment : Fragment() {
         topBar = actions?.getTopBar()
         drawerLayout = actions?.getDrawerLayout()
     }
-    abstract  fun setTopBarTitle()
+
 
 
     override fun onDetach() {

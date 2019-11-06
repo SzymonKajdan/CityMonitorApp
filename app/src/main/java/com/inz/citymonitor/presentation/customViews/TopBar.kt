@@ -29,7 +29,7 @@ class TopBar @JvmOverloads constructor(
 
     }
 
-    fun setTopBarTitle(title: String) {
+    fun setTopBarTitle(title: String?) {
         this.title.text = title
     }
 

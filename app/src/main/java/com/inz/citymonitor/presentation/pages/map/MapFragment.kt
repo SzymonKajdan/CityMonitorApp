@@ -10,9 +10,7 @@ import com.inz.citymonitor.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : BaseFragment() {
-    override fun setTopBarTitle() {
-        topBar?.setTopBarTitle("MapFragment")
-    }
+    override fun setTopBarTitle()="Main fragment"
 
     private val viewModel by lazy { MapViewModel() }
 

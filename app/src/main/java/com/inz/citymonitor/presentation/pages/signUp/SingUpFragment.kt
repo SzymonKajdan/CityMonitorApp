@@ -11,10 +11,7 @@ import com.inz.citymonitor.R
 import com.inz.citymonitor.presentation.base.BaseFragment
 
 class SingUpFragment :BaseFragment() {
-    override fun setTopBarTitle() {
-        topBar?.setTopBarTitle("Zarejstruj")
-    }
-
+    override fun setTopBarTitle() ="Zarejestruj"
 
     val viewModel by lazy { SingUpViewModel() }
 
