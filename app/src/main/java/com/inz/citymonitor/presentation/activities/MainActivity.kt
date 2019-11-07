@@ -4,11 +4,20 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.inz.citymonitor.R
 import com.inz.citymonitor.presentation.customViews.TopBar
+import com.inz.citymonitor.presentation.customViews.navigation.MenuAdapter
+import com.inz.citymonitor.presentation.pages.map.MapViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),MainInterface {
+
+
+    private val viewModel by lazy { MainViewModel() }
+    private lateinit var  adapter:MenuAdapter
+
     override var actions: MainActivityInterface?
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
         set(value) {}
@@ -31,7 +40,19 @@ class MainActivity : AppCompatActivity(),MainInterface {
 //
 //            }
 //        })
+        adapter= MenuAdapter(drawerLayout = drawerLayout,
+            navController = this.findNavController(R.id.nav_host_fragment)
+        )
+
+        navigationDrawer.setAdapter(adapter)
         topBar.onLeftButtonClick=::toogleDrawer
+        topBar.onRightButtonClick={
+            viewModel.setLogged()
+        }
+        viewModel.isLogged.observe(this, Observer {
+            adapter.setData(if (it)viewModel.looggedItemList else viewModel.notLoggedItemList)
+        })
+
 
     }
     fun toogleDrawer(){

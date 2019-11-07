@@ -31,7 +31,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.inz.citymonitor.presentation.customViews.NavigationDrawer
+    <com.inz.citymonitor.presentation.customViews.navigation.NavigationDrawer
+            android:id="@+id/navigationDrawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"

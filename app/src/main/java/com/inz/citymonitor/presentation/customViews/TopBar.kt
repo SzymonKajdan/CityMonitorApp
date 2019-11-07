@@ -13,6 +13,8 @@ class TopBar @JvmOverloads constructor(
 
     var onLeftButtonClick: () -> Unit = {}
 
+    var onRightButtonClick:()->Unit={}
+
     private lateinit var topBarListener: TopBarListener
 
     fun setTopBarListener(topBarListener: TopBarListener) {
@@ -26,6 +28,10 @@ class TopBar @JvmOverloads constructor(
             onLeftButtonClick()
 //        topBarListener.onLeftButtonClick()
         }
+        right_button.setOnClickListener {
+            onRightButtonClick()
+        }
+
 
     }
 
