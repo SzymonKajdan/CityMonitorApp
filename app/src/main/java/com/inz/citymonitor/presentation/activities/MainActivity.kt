@@ -12,11 +12,11 @@ import com.inz.citymonitor.presentation.customViews.navigation.MenuAdapter
 import com.inz.citymonitor.presentation.pages.map.MapViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),MainInterface {
+class MainActivity : AppCompatActivity(), MainInterface {
 
 
     private val viewModel by lazy { MainViewModel() }
-    private lateinit var  adapter:MenuAdapter
+    private lateinit var adapter: MenuAdapter
 
     override var actions: MainActivityInterface?
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
@@ -40,26 +40,31 @@ class MainActivity : AppCompatActivity(),MainInterface {
 //
 //            }
 //        })
-        adapter= MenuAdapter(drawerLayout = drawerLayout,
+
+        adapter = MenuAdapter(
+            drawerLayout = drawerLayout,
             navController = this.findNavController(R.id.nav_host_fragment)
         )
 
-        navigationDrawer.setAdapter(adapter)
-        topBar.onLeftButtonClick=::toogleDrawer
-        topBar.onRightButtonClick={
-            viewModel.setLogged()
-        }
-        viewModel.isLogged.observe(this, Observer {
-            adapter.setData(if (it)viewModel.looggedItemList else viewModel.notLoggedItemList)
+        viewModel.localStorage.isLogged().observe(this, Observer {
+            adapter.setData(viewModel.getItemList(it))
         })
 
 
+        navigationDrawer.setAdapter(adapter)
+        topBar.onLeftButtonClick = ::toogleDrawer
+        topBar.onRightButtonClick = {
+            viewModel.setLogged()
+        }
+
+
     }
-    fun toogleDrawer(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START,true)
-        }else{
-            drawerLayout.openDrawer(GravityCompat.START,true)
+
+    fun toogleDrawer() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START, true)
+        } else {
+            drawerLayout.openDrawer(GravityCompat.START, true)
         }
     }
 }

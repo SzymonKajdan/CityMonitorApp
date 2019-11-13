@@ -5,8 +5,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-    <View
-            android:background="@color/colorAccent"
+    <ImageView
+
+
             android:id="@+id/left_button"
             app:layout_constraintDimensionRatio="1:1"
             android:layout_width="0dp"
@@ -14,6 +15,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_dehaze_24px"
     />
     <View
             android:background="@color/colorAccent"

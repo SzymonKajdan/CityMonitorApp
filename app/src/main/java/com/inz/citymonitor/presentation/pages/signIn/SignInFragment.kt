@@ -7,6 +7,7 @@ import android.view.ViewGroup
 
 import com.inz.citymonitor.R
 import com.inz.citymonitor.presentation.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 class SignInFragment : BaseFragment() {
 
@@ -21,5 +22,12 @@ class SignInFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        signIn.setOnClickListener {
+
+
+        }
+    }
 
 }
