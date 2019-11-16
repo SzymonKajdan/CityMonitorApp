@@ -12,13 +12,13 @@ class NavigationDrawer @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
     init {
-        View.inflate(context, R.layout.navigation_drawer,this)
+        View.inflate(context, R.layout.navigation_drawer, this)
     }
 
-    fun setAdapter(adapter: MenuAdapter){
+    fun setAdapter(adapter: MenuAdapter) {
         recycleView.apply {
-            layoutManager=LinearLayoutManager(context)
-            this.adapter=adapter
+            layoutManager = LinearLayoutManager(context)
+            this.adapter = adapter
 
         }
 

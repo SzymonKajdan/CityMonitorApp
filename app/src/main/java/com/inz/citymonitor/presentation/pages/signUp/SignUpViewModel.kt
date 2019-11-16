@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel;
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.inz.citymonitor.data.model.ErrorResponseModel
-import com.inz.citymonitor.data.model.SignUpUser
+import com.inz.citymonitor.data.model.User.SignUpUser
 import com.inz.citymonitor.data.model.SuccesResponseModel
 import com.inz.citymonitor.data.rest.RetrofitRepository
 import com.inz.citymonitor.dependecyInjector.Injector
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
-class SingUpViewModel : ViewModel() {
+class SignUpViewModel : ViewModel() {
 
     @Inject
     lateinit var retrofit: RetrofitRepository
@@ -41,14 +41,13 @@ class SingUpViewModel : ViewModel() {
                     callResult.postValue(
                         SuccesResponseModel(it.code().toString())
                     )
-                }else if( it.code() in (400..499)){
-                    val type =object : TypeToken<ErrorResponseModel>(){}.type
-                    val response=Gson().fromJson(it.errorBody()?.charStream()?.readText(),type )as ErrorResponseModel
+                } else if (it.code() in (400..499)) {
+                    val type = object : TypeToken<ErrorResponseModel>() {}.type
+                    val response = Gson().fromJson(it.errorBody()?.charStream()?.readText(), type) as ErrorResponseModel
                     callResult.postValue(response)
 
                 }
             }
         )
-
     }
 }

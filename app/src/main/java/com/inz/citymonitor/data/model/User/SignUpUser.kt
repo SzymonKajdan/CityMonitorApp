@@ -1,4 +1,4 @@
-package com.inz.citymonitor.data.model
+package com.inz.citymonitor.data.model.User
 
 data class SignUpUser(
     var username: String,

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:hint="Nazwa użytkownika"
             android:id="@+id/userName"
-
+        android:text="user"
             android:layout_marginTop="16dp"
     />
     <EditText
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:id="@+id/password"
-
+            android:text="qwerty"
             android:layout_marginTop="16dp"
 
     />

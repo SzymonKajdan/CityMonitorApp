@@ -19,19 +19,6 @@ class MainViewModel : ViewModel() {
     @Inject
     lateinit var localStorage: LocalStorage
 
-    val itemList = MutableLiveData<List<MenuItem>>()
-
-    val notLoggedItemList = listOf<MenuItem>(
-        MenuItem(name = "Zarejestruj", destinationId = R.id.singUpFragment),
-        MenuItem(name = "Zaloguj", destinationId = R.id.singInFragment)
-    )
-
-    val looggedItemList = listOf<MenuItem>(
-        MenuItem(name = "Profil", destinationId = R.id.accountDetailsFragment),
-        MenuItem(name = "Ranking", destinationId = R.id.rankFragment),
-        MenuItem(name = "Historia", destinationId = R.id.historyFragment),
-        MenuItem(name = "Wyloguj")
-    )
 //    init {
 //        isLogged.postValue(false)
 //    }
@@ -46,7 +33,9 @@ class MainViewModel : ViewModel() {
         val profile = MenuItem(name = "Profil", destinationId = R.id.accountDetailsFragment)
         val rank = MenuItem(name = "Ranking", destinationId = R.id.rankFragment)
         val history = MenuItem(name = "Historia", destinationId = R.id.historyFragment)
-        val logout = MenuItem(name = "Wyloguj")
+        val logout = MenuItem(name = "Wyloguj",destinationId = null)
+
+ 
 
         return if (isLogged) {
             listOf(profile, rank, history, logout)

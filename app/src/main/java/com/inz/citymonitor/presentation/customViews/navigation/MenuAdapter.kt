@@ -8,9 +8,21 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.inz.citymonitor.R
+import com.inz.citymonitor.dependecyInjector.Injector
+import com.inz.citymonitor.functional.localStorage.LocalStorage
 import kotlinx.android.synthetic.main.item_menu.view.*
+import javax.inject.Inject
 
-class MenuAdapter(val drawerLayout: DrawerLayout,val navController: NavController) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+class MenuAdapter(val drawerLayout: DrawerLayout, val navController: NavController) :
+    RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+
+
+    init {
+        Injector.componet.inject(this)
+    }
+
+    @Inject
+    lateinit var localStorage: LocalStorage
 
     private var items: List<MenuItem>? = null
 
@@ -21,7 +33,7 @@ class MenuAdapter(val drawerLayout: DrawerLayout,val navController: NavControlle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_menu, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_menu, parent, false)
         return ViewHolder(view)
     }
 
@@ -34,7 +46,14 @@ class MenuAdapter(val drawerLayout: DrawerLayout,val navController: NavControlle
         holder.itemView.apply {
             name.text = item?.name
             setOnClickListener {
-                item?.destinationId?.let {  navController.navigate(item.destinationId)}
+                item?.destinationId.let {
+                    if (item?.destinationId == null) {
+                        localStorage.logOut()
+                        navController.navigate(R.id.mapFragment)
+                    }
+                    else
+                        navController.navigate(item.destinationId)
+                }
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
         }
