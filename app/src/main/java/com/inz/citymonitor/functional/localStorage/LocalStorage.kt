@@ -13,5 +13,7 @@ interface LocalStorage {
 
     fun saveUser(user: LocalUser)
 
-    fun getUser():LocalUser
+    fun getUser():LocalUser?
+
+    fun isLoggedNow():Boolean
 }

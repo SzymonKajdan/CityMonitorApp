@@ -1,3 +1,10 @@
 <resources>
+
     <string name="app_name">CityMonitor</string>
+    <string name="firstname">Imię: %s</string>
+    <string name="surname">Nazwisko: %s</string>
+    <string name="username">Login : %s</string>
+    <string name="email">Email: %s</string>
+    <string name="rating">Ocena: %s</string>
+    <string name="isBanned">%s</string>
 </resources>

@@ -2,6 +2,7 @@ package com.inz.citymonitor.data.rest
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import com.inz.citymonitor.data.model.User.EditUser
 import com.inz.citymonitor.data.model.User.SignInUser
 import com.inz.citymonitor.data.model.User.SignInUserResponse
 import com.inz.citymonitor.data.model.User.SignUpUser
@@ -24,7 +25,13 @@ class RetrofitRepository @Inject constructor(var retrofitService: RetrofitServic
         return retrofitService.signUpUser(user).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
     }
 
-    fun signIn(userToSend: SignInUser):  Observable<Response<ResponseBody>> {
-        return retrofitService.signInUser(userToSend).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
+    fun signIn(userToSend: SignInUser): Observable<Response<ResponseBody>> {
+        return retrofitService.signInUser(userToSend).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun editUser(userToSend: EditUser): Observable<Response<ResponseBody>> {
+        return retrofitService.editUser(userToSend).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
     }
 }

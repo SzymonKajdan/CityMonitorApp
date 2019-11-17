@@ -36,5 +36,8 @@
     <fragment android:id="@+id/reportCreatorFragment"
               android:name="com.inz.citymonitor.presentation.pages.report.reportCreator.ReportCreatorFragment"
               android:label="fragment_report_creator" tools:layout="@layout/fragment_report_creator"/>
+    <fragment android:id="@+id/changePasswordFragment"
+              android:name="com.inz.citymonitor.presentation.pages.account.changePassword.ChangePasswordFragment"
+              android:label="fragment_change_password" tools:layout="@layout/fragment_change_password"/>
 
 </navigation>

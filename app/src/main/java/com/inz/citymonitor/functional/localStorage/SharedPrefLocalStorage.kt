@@ -7,6 +7,11 @@ import com.inz.citymonitor.data.model.User.LocalUser
 import com.inz.citymonitor.data.model.User.SignInUserResponse
 
 class SharedPrefLocalStorage(context: Context) : LocalStorage {
+    override fun isLoggedNow(): Boolean {
+        var isLogged=sharePref.getBoolean(ISLOGGED, false)
+        return isLogged
+    }
+
     override fun logOut() {
         sharePref.edit().apply {
             putString(USER, null)
@@ -18,6 +23,7 @@ class SharedPrefLocalStorage(context: Context) : LocalStorage {
     override fun saveUser(user: LocalUser) {
         sharePref.edit().apply {
             putString(USER, Gson().toJson(user))
+            apply()
         }
     }
 
@@ -37,7 +43,7 @@ class SharedPrefLocalStorage(context: Context) : LocalStorage {
         return sharePref.getString(TOKEN, null)
     }
 
-    override fun getUser(): LocalUser {
+    override fun getUser(): LocalUser? {
         var user = sharePref.getString(USER, null)
         val type = object : TypeToken<LocalUser>() {}.type
         return Gson().fromJson(user, type) as LocalUser

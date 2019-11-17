@@ -2,6 +2,7 @@ package com.inz.citymonitor.data.rest
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import com.inz.citymonitor.data.model.User.EditUser
 import com.inz.citymonitor.data.model.User.SignInUser
 import com.inz.citymonitor.data.model.User.SignInUserResponse
 import com.inz.citymonitor.data.model.User.SignUpUser
@@ -21,6 +22,7 @@ interface RetrofitService {
     @POST("auth")
     fun signInUser(@Body user: SignInUser): Observable<Response<ResponseBody>>
 
-
+    @POST("editUser")
+    fun editUser(@Body user: EditUser):Observable<Response<ResponseBody>>
 
 }

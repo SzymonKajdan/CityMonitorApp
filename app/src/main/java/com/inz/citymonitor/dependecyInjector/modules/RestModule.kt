@@ -1,6 +1,7 @@
 package com.inz.citymonitor.dependecyInjector.modules
 
 import com.inz.citymonitor.data.rest.RetrofitService
+import com.inz.citymonitor.data.rest.TokenInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -18,8 +19,8 @@ class RestModule {
 
     @Provides
     @Singleton
-    fun provideHttpClient():OkHttpClient{
-        return OkHttpClient.Builder().build()
+    fun provideHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder().addInterceptor(TokenInterceptor()).build()
     }
 
 
@@ -43,7 +44,7 @@ class RestModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitService(retrofit:Retrofit):RetrofitService{
+    fun provideRetrofitService(retrofit: Retrofit): RetrofitService {
         return retrofit.create(RetrofitService::class.java)
     }
 
