@@ -40,4 +40,9 @@ class RetrofitRepository @Inject constructor(var retrofitService: RetrofitServic
         return retrofitService.changePassword(passowrd).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
+
+    fun resetPassword(email:String):Observable<Response<ResponseBody>>{
+        return retrofitService.resetPassword(email).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
 }

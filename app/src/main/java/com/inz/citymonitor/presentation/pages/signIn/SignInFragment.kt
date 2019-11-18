@@ -30,9 +30,16 @@ class SignInFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        resetPassword.setOnClickListener {
+            findNavController().navigate(R.id.resetPasswordFragment)
+        }
+
         signIn.setOnClickListener {
             viewModel.signIn(userName.text.toString(), password.text.toString())
         }
+
+
         viewModel.callResult.observe(viewLifecycleOwner, Observer {
 
             when (it) {

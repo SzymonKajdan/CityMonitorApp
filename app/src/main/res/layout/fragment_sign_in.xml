@@ -11,35 +11,44 @@
         android:focusable="true"
         android:focusableInTouchMode="true">
     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:orientation="vertical">
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  android:orientation="vertical"
+                  android:padding="8dp">
 
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nazwa użytkownika"
-            android:id="@+id/userName"
-        android:text="user"
-            android:layout_marginTop="16dp"
-    />
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:id="@+id/password"
-            android:text="qwerty"
-            android:layout_marginTop="16dp"
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nazwa użytkownika"
+                android:id="@+id/userName"
+                android:text="user"
+                android:layout_marginTop="16dp"
+        />
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:id="@+id/password"
+                android:text="qwerty"
+                android:layout_marginTop="16dp"
 
-    />
-    <Button android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Zakoguj"
-            android:id="@+id/signIn"
+        />
+        <Button android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Zakoguj"
+                android:id="@+id/signIn"
 
-    />
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ptzypomnij hasło"
+                android:gravity="center"
+                android:id="@+id/resetPassword"
+                android:layout_marginTop="16dp"
+        />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

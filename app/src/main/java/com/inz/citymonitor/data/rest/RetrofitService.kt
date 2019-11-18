@@ -14,6 +14,7 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface RetrofitService {
 
@@ -28,4 +29,7 @@ interface RetrofitService {
 
     @POST("changePassword")
     fun changePassword(@Body password: PasswordChangeModel):Observable<Response<ResponseBody>>
+
+    @POST("resetPassword")
+    fun resetPassword(@Query("emailAddres")email:String):Observable<Response<ResponseBody>>
 }
