@@ -8,6 +8,7 @@ import com.inz.citymonitor.presentation.activities.MainActivity
 import com.inz.citymonitor.presentation.activities.MainViewModel
 import com.inz.citymonitor.presentation.customViews.navigation.MenuAdapter
 import com.inz.citymonitor.presentation.pages.account.AccountDetailsViewModel
+import com.inz.citymonitor.presentation.pages.account.changePassword.ChangePasswordViewModel
 import com.inz.citymonitor.presentation.pages.account.editProfile.EditProfileViewModel
 import com.inz.citymonitor.presentation.pages.signIn.SignInViewModel
 import com.inz.citymonitor.presentation.pages.signUp.SignUpViewModel
@@ -43,5 +44,7 @@ interface AppComponent {
     fun inject(into: AccountDetailsViewModel)
 
     fun inject(into:EditProfileViewModel)
+
+    fun inject(into:ChangePasswordViewModel)
 
 }

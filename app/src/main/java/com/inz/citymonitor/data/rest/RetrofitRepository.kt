@@ -2,6 +2,7 @@ package com.inz.citymonitor.data.rest
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import com.inz.citymonitor.data.model.PasswordModel.PasswordChangeModel
 import com.inz.citymonitor.data.model.User.EditUser
 import com.inz.citymonitor.data.model.User.SignInUser
 import com.inz.citymonitor.data.model.User.SignInUserResponse
@@ -32,6 +33,11 @@ class RetrofitRepository @Inject constructor(var retrofitService: RetrofitServic
 
     fun editUser(userToSend: EditUser): Observable<Response<ResponseBody>> {
         return retrofitService.editUser(userToSend).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun changePassword(passowrd:PasswordChangeModel):Observable<Response<ResponseBody>>{
+        return retrofitService.changePassword(passowrd).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
 }
