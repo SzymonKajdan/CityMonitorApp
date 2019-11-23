@@ -1,14 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.pages.history.historyDetails.HistoryDetailsFragment">
+        android:clickable="true"
+        android:padding="16dp"
+        tools:context=".presentation.pages.history.historyDetails.HistoryDetailsFragment"
+        android:focusableInTouchMode="true"
+        android:id="@+id/detailsScroll">
 
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"/>
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:clickable="true"
+            android:focusable="true"
 
-</FrameLayout>
+            >
+
+        <ImageView
+                android:id="@+id/reportPhoto"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+
+                app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
+                app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
+                app:layout_constraintTop_toBottomOf="@id/type"
+               />
+
+        <TextView
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Typ"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/guidelinePhotoTop"
+                app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
+                app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/dateReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="data"
+                android:paddingBottom="8dp"
+                app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
+                app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
+                app:layout_constraintTop_toBottomOf="@id/reportPhoto"
+               />
+
+        <TextView
+                android:id="@+id/isActive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="isActive"
+                android:paddingBottom="8dp"
+                app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
+                app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
+                app:layout_constraintTop_toBottomOf="@id/dateReport" />
+
+        <TextView
+                android:id="@+id/descrptionReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="a"
+
+                android:textSize="16dp"
+                app:layout_constraintBottom_toTopOf="@id/video"
+                app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
+                app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
+                app:layout_constraintTop_toBottomOf="@id/isActive" />
+
+        <VideoView
+                android:id="@+id/video"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:padding="16dp"
+                android:paddingBottom="8dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
+                app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
+                app:layout_constraintTop_toBottomOf="@id/descrptionReport"
+                />
+
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelinePhotoRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:layout_constraintGuide_percent="0.85" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelinePhotoLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelinePhotoTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".95" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

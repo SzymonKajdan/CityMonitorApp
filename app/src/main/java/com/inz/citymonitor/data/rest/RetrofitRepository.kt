@@ -36,13 +36,23 @@ class RetrofitRepository @Inject constructor(var retrofitService: RetrofitServic
             .subscribeOn(Schedulers.io())
     }
 
-    fun changePassword(passowrd:PasswordChangeModel):Observable<Response<ResponseBody>>{
+    fun changePassword(passowrd: PasswordChangeModel): Observable<Response<ResponseBody>> {
         return retrofitService.changePassword(passowrd).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
 
-    fun resetPassword(email:String):Observable<Response<ResponseBody>>{
+    fun resetPassword(email: String): Observable<Response<ResponseBody>> {
         return retrofitService.resetPassword(email).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getReports(id: Long?): Observable<Response<ResponseBody>> {
+        return retrofitService.getUserReposrts(id).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getReportById(id:Long?):Observable<Response<ResponseBody>>{
+        return retrofitService.getReportById(id).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
 }

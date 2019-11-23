@@ -1,43 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/mapFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/mapFragment">
 
-    <fragment android:id="@+id/mapFragment"
-              android:name="com.inz.citymonitor.presentation.pages.map.MapFragment"
-              android:label="fragment_map"
-              tools:layout="@layout/fragment_map"/>
-    <fragment android:id="@+id/singUpFragment"
-              android:name="com.inz.citymonitor.presentation.pages.signUp.SignUpFragment"
-              android:label="fragment_sign_up" tools:layout="@layout/fragment_sign_up"/>
-    <fragment android:id="@+id/singInFragment" android:name="com.inz.citymonitor.presentation.pages.signIn.SignInFragment"
-              android:label="fragment_sigin_in" tools:layout="@layout/fragment_sign_in"/>
-    <fragment android:id="@+id/rankFragment" android:name="com.inz.citymonitor.presentation.pages.ranking.RankFragment"
-              android:label="fragment_rank" tools:layout="@layout/fragment_rank"/>
-    <fragment android:id="@+id/historyFragment"
-              android:name="com.inz.citymonitor.presentation.pages.history.HistoryFragment"
-              android:label="fragment_history" tools:layout="@layout/fragment_history"/>
-    <fragment android:id="@+id/historyDetailsFragment"
-              android:name="com.inz.citymonitor.presentation.pages.history.historyDetails.HistoryDetailsFragment"
-              android:label="fragment_history_details" tools:layout="@layout/fragment_history_details"/>
-    <fragment android:id="@+id/editProfileFragment"
-              android:name="com.inz.citymonitor.presentation.pages.account.editProfile.EditProfileFragment"
-              android:label="fragment_edit_profile" tools:layout="@layout/fragment_edit_profile"/>
-    <fragment android:id="@+id/resetPasswordFragment"
-              android:name="com.inz.citymonitor.presentation.pages.account.resetPassword.ResetPasswordFragment"
-              android:label="fragmnet_rest_password" tools:layout="@layout/fragmnet_rest_password"/>
-    <fragment android:id="@+id/accountDetailsFragment"
-              android:name="com.inz.citymonitor.presentation.pages.account.AccountDetailsFragment"
-              android:label="fragment_account_details" tools:layout="@layout/fragment_account_details"/>
-    <fragment android:id="@+id/reportInfoFragment"
-              android:name="com.inz.citymonitor.presentation.pages.report.reportInfo.ReportInfoFragment"
-              android:label="fragment_report_info" tools:layout="@layout/fragment_report_info"/>
-    <fragment android:id="@+id/reportCreatorFragment"
-              android:name="com.inz.citymonitor.presentation.pages.report.reportCreator.ReportCreatorFragment"
-              android:label="fragment_report_creator" tools:layout="@layout/fragment_report_creator"/>
-    <fragment android:id="@+id/changePasswordFragment"
-              android:name="com.inz.citymonitor.presentation.pages.account.changePassword.ChangePasswordFragment"
-              android:label="fragment_change_password" tools:layout="@layout/fragment_change_password"/>
+    <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.inz.citymonitor.presentation.pages.map.MapFragment"
+            android:label="fragment_map"
+            tools:layout="@layout/fragment_map" />
+    <fragment
+            android:id="@+id/singUpFragment"
+            android:name="com.inz.citymonitor.presentation.pages.signUp.SignUpFragment"
+            android:label="fragment_sign_up"
+            tools:layout="@layout/fragment_sign_up" />
+    <fragment
+            android:id="@+id/singInFragment"
+            android:name="com.inz.citymonitor.presentation.pages.signIn.SignInFragment"
+            android:label="fragment_sigin_in"
+            tools:layout="@layout/fragment_sign_in" />
+    <fragment
+            android:id="@+id/rankFragment"
+            android:name="com.inz.citymonitor.presentation.pages.ranking.RankFragment"
+            android:label="fragment_rank"
+            tools:layout="@layout/fragment_rank" />
+    <fragment
+            android:id="@+id/historyFragment"
+            android:name="com.inz.citymonitor.presentation.pages.history.HistoryFragment"
+            android:label="fragment_history"
+            tools:layout="@layout/fragment_history" />
+    <fragment
+            android:id="@+id/historyDetailsFragment"
+            android:name="com.inz.citymonitor.presentation.pages.history.historyDetails.HistoryDetailsFragment"
+            android:label="fragment_history_details"
+            tools:layout="@layout/fragment_history_details">
+        <argument
+                android:name="reportId"
+                app:argType="long" />
+
+    </fragment>
+    <fragment
+            android:id="@+id/editProfileFragment"
+            android:name="com.inz.citymonitor.presentation.pages.account.editProfile.EditProfileFragment"
+            android:label="fragment_edit_profile"
+            tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+            android:id="@+id/resetPasswordFragment"
+            android:name="com.inz.citymonitor.presentation.pages.account.resetPassword.ResetPasswordFragment"
+            android:label="fragmnet_rest_password"
+            tools:layout="@layout/fragment_reset_password" />
+    <fragment
+            android:id="@+id/accountDetailsFragment"
+            android:name="com.inz.citymonitor.presentation.pages.account.AccountDetailsFragment"
+            android:label="fragment_account_details"
+            tools:layout="@layout/fragment_account_details" />
+    <fragment
+            android:id="@+id/reportInfoFragment"
+            android:name="com.inz.citymonitor.presentation.pages.report.reportInfo.ReportInfoFragment"
+            android:label="fragment_report_info"
+            tools:layout="@layout/fragment_report_info" />
+    <fragment
+            android:id="@+id/reportCreatorFragment"
+            android:name="com.inz.citymonitor.presentation.pages.report.reportCreator.ReportCreatorFragment"
+            android:label="fragment_report_creator"
+            tools:layout="@layout/fragment_report_creator" />
+    <fragment
+            android:id="@+id/changePasswordFragment"
+            android:name="com.inz.citymonitor.presentation.pages.account.changePassword.ChangePasswordFragment"
+            android:label="fragment_change_password"
+            tools:layout="@layout/fragment_change_password" />
+    <action
+            android:id="@+id/to_historyDetailsFragment"
+            app:destination="@id/historyDetailsFragment">
+    </action>
 
 </navigation>

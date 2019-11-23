@@ -1,23 +1,19 @@
 package com.inz.citymonitor.data.rest
 
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
 import com.inz.citymonitor.data.model.PasswordModel.PasswordChangeModel
 import com.inz.citymonitor.data.model.User.EditUser
 import com.inz.citymonitor.data.model.User.SignInUser
-import com.inz.citymonitor.data.model.User.SignInUserResponse
 import com.inz.citymonitor.data.model.User.SignUpUser
 import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface RetrofitService {
 
+
+    //user
     @POST("addUser")
     fun signUpUser(@Body user: SignUpUser):Single<Response<Void>>
 
@@ -30,6 +26,14 @@ interface RetrofitService {
     @POST("changePassword")
     fun changePassword(@Body password: PasswordChangeModel):Observable<Response<ResponseBody>>
 
-    @POST("resetPassword")
-    fun resetPassword(@Query("emailAddres")email:String):Observable<Response<ResponseBody>>
+    @POST("resetPassword/{emailAdddres}")
+    fun resetPassword(@Path("emailAdddres") email:String):Observable<Response<ResponseBody>>
+
+
+    //reportHistory
+    @GET("reports/getUserReports")
+    fun getUserReposrts(@Query("id")id:Long?):Observable<Response<ResponseBody>>
+
+    @GET("reports/getReport/{id}")
+    fun getReportById(@Path("id")id:Long?):Observable<Response<ResponseBody>>
 }

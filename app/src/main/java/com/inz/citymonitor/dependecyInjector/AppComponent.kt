@@ -11,6 +11,8 @@ import com.inz.citymonitor.presentation.pages.account.AccountDetailsViewModel
 import com.inz.citymonitor.presentation.pages.account.changePassword.ChangePasswordViewModel
 import com.inz.citymonitor.presentation.pages.account.editProfile.EditProfileViewModel
 import com.inz.citymonitor.presentation.pages.account.resetPassword.ResetPasswordViewModel
+import com.inz.citymonitor.presentation.pages.history.HistoryViewModel
+import com.inz.citymonitor.presentation.pages.history.historyDetails.HistoryDetailsViewModel
 import com.inz.citymonitor.presentation.pages.signIn.SignInViewModel
 import com.inz.citymonitor.presentation.pages.signUp.SignUpViewModel
 import dagger.Component
@@ -49,5 +51,9 @@ interface AppComponent {
     fun inject(into:ChangePasswordViewModel)
 
     fun inject(into:ResetPasswordViewModel)
+
+    fun inject(into:HistoryViewModel)
+
+    fun inject(into : HistoryDetailsViewModel)
 
 }

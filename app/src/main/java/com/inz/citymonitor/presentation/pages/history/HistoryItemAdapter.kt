@@ -1,0 +1,62 @@
+package com.inz.citymonitor.presentation.pages.history
+
+import android.net.Uri
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.inz.citymonitor.R
+import com.inz.citymonitor.data.model.History.HistoryModelLight
+import kotlinx.android.synthetic.main.history_item.view.*
+
+class HistoryItemAdapter : RecyclerView.Adapter<HistoryItemAdapter.ViewHolder>() {
+
+
+    private var items: List<HistoryModelLight>? = null
+
+    fun setData(items: List<HistoryModelLight>) {
+
+        this.items = items
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.history_item, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return items?.size ?: 0
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items?.get(position)
+        holder.itemView.apply {
+            if (item?.isActive == true) rate.setBackgroundResource(R.color.active) else rate.setBackgroundResource(
+                R.color.noactive
+            )
+            type.text = item?.reportType
+            if (item?.photo != null)
+                Glide.with(context)
+                    .load(item.photo)
+                    .into(photo)
+
+            setOnClickListener {
+                if (item != null) {
+
+                    findNavController().navigate(
+                        HistoryFragmentDirections.toHistoryDetailsFragment(
+                            item.id
+                        )
+                    )
+
+                }
+            }
+        }
+    }
+
+    inner class ViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view)
+}
