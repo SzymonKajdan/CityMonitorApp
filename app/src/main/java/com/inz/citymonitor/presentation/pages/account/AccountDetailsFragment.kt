@@ -44,9 +44,9 @@ class AccountDetailsFragment : BaseFragment() {
         rating.text = getString(R.string.rating, user?.userRating.toString())
 
         if (user?.isBanned == true) {
-            isBanned.text = getString(R.string.isBanned, "zbanowany")
+            isBanned.text = getString(R.string.isBanned, "Masz blokade :(.")
         } else {
-            isBanned.text = getString(R.string.isBanned, "brak bana  ")
+            isBanned.text = getString(R.string.isBanned, "Nie jesteś zbanowany.")
         }
     }
 

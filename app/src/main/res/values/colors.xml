@@ -3,7 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="background">#fff</color>
+    <color name="background">#9098D1</color>
+    <color name="naviagtionBacgorund">#B2B7D8</color>
     <color name="active">#40DF13</color>
     <color name="noactive">#FA0606</color>
+    <color name="black">#000</color>
+    <color name="whitwe">#fff</color>
+
 </resources>

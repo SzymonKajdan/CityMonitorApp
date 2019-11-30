@@ -3,7 +3,8 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="wrap_content"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/naviagtionBacgorund">
 
 
     <TextView
@@ -46,7 +47,7 @@
     <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="@color/colorAccent"
+            android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

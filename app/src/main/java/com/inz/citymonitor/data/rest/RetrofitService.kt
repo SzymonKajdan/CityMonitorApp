@@ -14,10 +14,10 @@ interface RetrofitService {
 
 
     //user
-    @POST("addUser")
+    @POST("signUp")
     fun signUpUser(@Body user: SignUpUser):Single<Response<Void>>
 
-    @POST("auth")
+    @POST("logIn")
     fun signInUser(@Body user: SignInUser): Observable<Response<ResponseBody>>
 
     @POST("editUser")
@@ -36,4 +36,7 @@ interface RetrofitService {
 
     @GET("reports/getReport/{id}")
     fun getReportById(@Path("id")id:Long?):Observable<Response<ResponseBody>>
+
+    @GET("getRank")
+    fun getRanking():Observable<Response<ResponseBody>>
 }

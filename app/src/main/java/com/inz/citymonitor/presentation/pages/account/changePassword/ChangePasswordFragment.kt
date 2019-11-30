@@ -29,7 +29,12 @@ class ChangePasswordFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         changePassword.setOnClickListener {
-            viewModel.changePassword(oldPassword.text.toString(),newPassword.text.toString())
+
+            if (checkFields())
+                viewModel.changePassword(
+                    oldPassword.text.toString(),
+                    newPassword.text.toString()
+                )
             viewModel.callResult.observe(viewLifecycleOwner, Observer {
 
                 when (it) {
@@ -45,7 +50,7 @@ class ChangePasswordFragment : BaseFragment() {
                                 title(text = it.details)
                                 message(
                                     text = it.fields?.joinToString(
-                                        transform = { field -> "${field.field} ${field.details}" },
+                                        transform = { field -> "${field.fieldName} ${field.details}" },
                                         separator = "\n"
                                     )
                                 )
@@ -60,7 +65,20 @@ class ChangePasswordFragment : BaseFragment() {
             })
         }
     }
-    fun clearFields(){
+
+    private fun checkFields(): Boolean {
+        if (oldPassword.text.toString().length < 4 || oldPassword.text.toString().length > 30) {
+            Toast.makeText(context, "stare hasło nie poprawne dlugosc od 4 do 30 ", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (newPassword.text.toString().length < 4 || newPassword.text.toString().length > 30) {
+            Toast.makeText(context, "nowe hasło nie poprawne długosc od 4 do 30", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
+    fun clearFields() {
         newPassword.text.clear()
         oldPassword.text.clear()
     }

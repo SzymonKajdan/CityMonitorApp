@@ -53,9 +53,7 @@ class MainActivity : AppCompatActivity(), MainInterface {
 
         navigationDrawer.setAdapter(adapter)
         topBar.onLeftButtonClick = ::toogleDrawer
-        topBar.onRightButtonClick = {
-            viewModel.setLogged()
-        }
+
 
 
     }

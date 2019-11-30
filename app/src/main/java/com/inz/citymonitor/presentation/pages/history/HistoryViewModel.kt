@@ -34,7 +34,7 @@ class HistoryViewModel : ViewModel() {
         retrofit.getReports(sharedPref.getUser()?.id).subscribeBy(
             onError = {
 
-                callResult.postValue("Bład");
+                callResult.postValue(ErrorResponseModel("try again later"," ", emptyList()));
             }
             , onNext = {
                 if (it.isSuccessful) {

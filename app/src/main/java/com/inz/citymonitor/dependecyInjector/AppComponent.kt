@@ -13,6 +13,7 @@ import com.inz.citymonitor.presentation.pages.account.editProfile.EditProfileVie
 import com.inz.citymonitor.presentation.pages.account.resetPassword.ResetPasswordViewModel
 import com.inz.citymonitor.presentation.pages.history.HistoryViewModel
 import com.inz.citymonitor.presentation.pages.history.historyDetails.HistoryDetailsViewModel
+import com.inz.citymonitor.presentation.pages.ranking.RankViewModel
 import com.inz.citymonitor.presentation.pages.signIn.SignInViewModel
 import com.inz.citymonitor.presentation.pages.signUp.SignUpViewModel
 import dagger.Component
@@ -55,5 +56,7 @@ interface AppComponent {
     fun inject(into:HistoryViewModel)
 
     fun inject(into : HistoryDetailsViewModel)
+
+    fun inject(into: RankViewModel)
 
 }

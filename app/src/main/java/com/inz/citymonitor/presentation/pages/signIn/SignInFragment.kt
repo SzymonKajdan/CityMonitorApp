@@ -54,7 +54,7 @@ class SignInFragment : BaseFragment() {
                             if (!it.fields.isNullOrEmpty()) {
                                 message(
                                     text = it.fields?.joinToString(
-                                        transform = { field -> "${field.field} ${field.details}" },
+                                        transform = { field -> "${field.fieldName} ${field.details}" },
                                         separator = "\n"
                                     )
                                 )

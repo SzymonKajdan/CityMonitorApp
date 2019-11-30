@@ -14,6 +14,8 @@ import com.inz.citymonitor.data.model.ErrorResponseModel
 import com.inz.citymonitor.data.model.SuccesResponseModel
 import com.inz.citymonitor.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_reset_password.*
+import kotlinx.android.synthetic.main.fragment_reset_password.email
+import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 class ResetPasswordFragment : BaseFragment() {
     override fun setTopBarTitle() = "resetuj haslo "
@@ -33,9 +35,11 @@ class ResetPasswordFragment : BaseFragment() {
         resetPassword.setOnClickListener {
             if (email.text.isNullOrBlank()) {
                 Snackbar.make(view, "Nie moze być puste ", Snackbar.LENGTH_SHORT).show();
-            } else
-                viewModel.resetPassword(email.text.toString())
+            } else {
+                if(checkField())
+                    viewModel.resetPassword(email.text.toString())
 
+            }
             viewModel.callResult.observe(viewLifecycleOwner, Observer {
 
                 when (it) {
@@ -55,7 +59,7 @@ class ResetPasswordFragment : BaseFragment() {
                                 if (!it.fields.isNullOrEmpty()) {
                                     message(
                                         text = it.fields?.joinToString(
-                                            transform = { field -> "${field.field} ${field.details}" },
+                                            transform = { field -> "${field.fieldName} ${field.details}" },
                                             separator = "\n"
                                         )
                                     )
@@ -78,5 +82,30 @@ class ResetPasswordFragment : BaseFragment() {
                 }
             })
         }
+    }
+    private  fun checkField():Boolean{
+        val EMAIL: String = "^[a-zA-Z\\d\\.]+?@[a-zA-Z\\d]+?\\..{2,}[^\\.\$&+,:;=?@#|'<>.^*()%!-]\$"
+        if (EMAIL.toRegex().find(email.text.toString()) == null) {
+            Toast.makeText(
+                context,
+                "Adres mail nie poprawny ",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+
+        }
+        if (email.text.toString().length < 4 || email.text.toString().length > 30) {
+            Toast.makeText(
+                context,
+                "Adres mail powinein miesicic w przedziale  od 4 do 30 znaków  ",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+
+
+        }
+
+        return true
+
     }
 }

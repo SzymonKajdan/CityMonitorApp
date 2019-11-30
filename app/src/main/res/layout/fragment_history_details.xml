@@ -2,21 +2,22 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/detailsScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
+        android:focusableInTouchMode="true"
         android:padding="16dp"
         tools:context=".presentation.pages.history.historyDetails.HistoryDetailsFragment"
-        android:focusableInTouchMode="true"
-        android:id="@+id/detailsScroll">
+        android:background="@color/background">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:clickable="true"
             android:focusable="true"
+            android:padding="20dp"
 
             >
 
@@ -27,8 +28,7 @@
 
                 app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
                 app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
-                app:layout_constraintTop_toBottomOf="@id/type"
-               />
+                app:layout_constraintTop_toBottomOf="@id/type" />
 
         <TextView
                 android:id="@+id/type"
@@ -52,8 +52,7 @@
                 android:paddingBottom="8dp"
                 app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
                 app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
-                app:layout_constraintTop_toBottomOf="@id/reportPhoto"
-               />
+                app:layout_constraintTop_toBottomOf="@id/reportPhoto" />
 
         <TextView
                 android:id="@+id/isActive"
@@ -85,11 +84,18 @@
                 android:padding="16dp"
                 android:paddingBottom="8dp"
                 android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descrptionReport" />
+
+        <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@id/guidelinePhotoRight"
                 app:layout_constraintStart_toStartOf="@id/guidelinePhotoLeft"
-                app:layout_constraintTop_toBottomOf="@id/descrptionReport"
-                />
-
+                app:layout_constraintTop_toBottomOf="@id/descrptionReport" />
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelinePhotoRight"
@@ -105,7 +111,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.15" />
-
 
 
         <androidx.constraintlayout.widget.Guideline

@@ -14,8 +14,7 @@ import javax.inject.Singleton
 @Module
 class RestModule {
 
-//    var cacheSize = 10 * 1024 * 1024 // 10 MB
-//    var cache = Cache(getCacheDir(), cacheSize)
+
 
     @Provides
     @Singleton
@@ -24,17 +23,13 @@ class RestModule {
     }
 
 
-//
-//    var okHttpClient = OkHttpClient.Builder()
-//        .cache(cache)
-//        .build()
 
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("http://192.168.1.101:8081/")
+            .baseUrl("http://192.168.1.22:8081/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
