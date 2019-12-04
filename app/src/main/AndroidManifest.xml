@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.inz.citymonitor">
-<uses-permission android:name="android.permission.INTERNET"/>
+        package="com.inz.citymonitor">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    
 
     <application
             android:name=".app.App"
@@ -11,18 +16,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:usesCleartextTraffic="true"
-    >
+            android:usesCleartextTraffic="true">
         <activity android:name=".presentation.activities.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC75ME9n8q8ZIBxHD213lP5jMTvPqqI6zk"/>
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyC75ME9n8q8ZIBxHD213lP5jMTvPqqI6zk" />
     </application>
 
 </manifest>

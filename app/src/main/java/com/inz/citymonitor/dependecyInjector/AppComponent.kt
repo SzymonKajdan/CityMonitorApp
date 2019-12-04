@@ -13,6 +13,8 @@ import com.inz.citymonitor.presentation.pages.account.editProfile.EditProfileVie
 import com.inz.citymonitor.presentation.pages.account.resetPassword.ResetPasswordViewModel
 import com.inz.citymonitor.presentation.pages.history.HistoryViewModel
 import com.inz.citymonitor.presentation.pages.history.historyDetails.HistoryDetailsViewModel
+import com.inz.citymonitor.presentation.pages.map.MapFragment
+import com.inz.citymonitor.presentation.pages.map.MapViewModel
 import com.inz.citymonitor.presentation.pages.ranking.RankViewModel
 import com.inz.citymonitor.presentation.pages.signIn.SignInViewModel
 import com.inz.citymonitor.presentation.pages.signUp.SignUpViewModel
@@ -58,5 +60,7 @@ interface AppComponent {
     fun inject(into : HistoryDetailsViewModel)
 
     fun inject(into: RankViewModel)
+
+    fun inject(into: MapViewModel)
 
 }
