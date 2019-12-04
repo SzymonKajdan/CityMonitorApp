@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -23,10 +25,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
+import com.google.maps.android.clustering.ClusterManager
 import com.inz.citymonitor.R
 import com.inz.citymonitor.data.model.ErrorResponseModel
 import com.inz.citymonitor.data.model.reports.Reports
 import com.inz.citymonitor.presentation.base.BaseFragment
+import com.inz.citymonitor.presentation.pages.history.HistoryFragmentDirections
 
 class MapFragment : BaseFragment(), OnMapReadyCallback {
     override fun setTopBarTitle(): String? {
@@ -40,7 +44,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     private var locationRequest: LocationRequest? = null
     private lateinit var locationCallback: LocationCallback
     private var requestingLocationUpdates: Boolean = false
-
+    private var clusterManager: ClusterManager<Reports>? = null
     override fun onMapReady(googleMap: GoogleMap?) {
         map = googleMap
         map?.apply {
@@ -99,7 +103,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
                     Toast.makeText(context, it.code + " " + it.details, Toast.LENGTH_SHORT).show()
                 }
                 is ArrayList<*> -> {
-                 setMarkers(it as List<Reports>);
+                    setMarkers(it as List<Reports>);
                 }
             }
         })
@@ -278,16 +282,32 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     private fun setMarkers(reports: List<Reports>) {
+        setCluster()
         reports.forEach {
 
-            map?.addMarker(
-                MarkerOptions().position(
-                    LatLng(
-                        it.latitude.toDouble(),
-                        it.longitude.toDouble()
-                    )
-                )
-            )
+            clusterManager?.addItem(it)
         }
     }
+
+    private fun setCluster() {
+        clusterManager = ClusterManager(context, map)
+        clusterManager!!.setOnClusterItemClickListener { reports ->
+            Toast.makeText(context, reports.id.toString(), Toast.LENGTH_SHORT).show()
+            findNavController().navigate(
+                HistoryFragmentDirections.toHistoryDetailsFragment(
+                    reports.id
+                )
+            )
+            requestingLocationUpdates
+        }
+
+
+        map?.setOnCameraIdleListener(clusterManager)
+        map?.setOnMarkerClickListener(clusterManager)
+
+    }
+
+
 }
+
+
