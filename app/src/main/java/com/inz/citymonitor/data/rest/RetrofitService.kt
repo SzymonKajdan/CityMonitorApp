@@ -39,4 +39,7 @@ interface RetrofitService {
 
     @GET("getRank")
     fun getRanking():Observable<Response<ResponseBody>>
+
+    @GET(value = "cities/getCityById/{id}")
+    fun reports(@Path("id")id:Long?):Observable<Response<ResponseBody>>
 }

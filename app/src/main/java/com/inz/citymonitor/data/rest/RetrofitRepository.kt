@@ -57,4 +57,9 @@ class RetrofitRepository @Inject constructor(var retrofitService: RetrofitServic
         return retrofitService.getRanking().observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
+
+    fun reports(id:Long?): Observable<Response<ResponseBody>> {
+        return retrofitService.reports(id).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
 }

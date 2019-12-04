@@ -10,8 +10,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -19,10 +21,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.inz.citymonitor.R
+import com.inz.citymonitor.data.model.ErrorResponseModel
+import com.inz.citymonitor.data.model.reports.Reports
 import com.inz.citymonitor.presentation.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : BaseFragment(), OnMapReadyCallback {
     override fun setTopBarTitle(): String? {
@@ -80,12 +84,27 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
         }
 
         checkLocationSettings()
-        currentLocation.setOnClickListener {
-            lastKnownLocation?.let {
-                moveCamera(LatLng(it.latitude, it.longitude), 9f)
+//        currentLocation.setOnClickListener {
+//            lastKnownLocation?.let {
+//                moveCamera(LatLng(it.latitude, it.longitude), 9f)
+//            }
+//        }
+
+        viewModel.getReports()
+
+
+        viewModel.callResult.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is ErrorResponseModel -> {
+                    Toast.makeText(context, it.code + " " + it.details, Toast.LENGTH_SHORT).show()
+                }
+                is ArrayList<*> -> {
+                 setMarkers(it as List<Reports>);
+                }
             }
-        }
+        })
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -251,9 +270,24 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 
     fun checkPermission(permission: String): Boolean {
 
-        return (ContextCompat.checkSelfPermission(activity?.applicationContext ?: return false, permission)
+        return (ContextCompat.checkSelfPermission(
+            activity?.applicationContext ?: return false,
+            permission
+        )
                 == PackageManager.PERMISSION_GRANTED)
     }
 
+    private fun setMarkers(reports: List<Reports>) {
+        reports.forEach {
 
+            map?.addMarker(
+                MarkerOptions().position(
+                    LatLng(
+                        it.latitude.toDouble(),
+                        it.longitude.toDouble()
+                    )
+                )
+            )
+        }
+    }
 }
