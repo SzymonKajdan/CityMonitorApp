@@ -4,6 +4,7 @@ import com.inz.citymonitor.data.model.PasswordModel.PasswordChangeModel
 import com.inz.citymonitor.data.model.User.EditUser
 import com.inz.citymonitor.data.model.User.SignInUser
 import com.inz.citymonitor.data.model.User.SignUpUser
+import com.inz.citymonitor.data.model.reports.ReportPostResource
 import com.inz.citymonitor.dependecyInjector.Injector
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -58,8 +59,13 @@ class RetrofitRepository @Inject constructor(var retrofitService: RetrofitServic
             .subscribeOn(Schedulers.io())
     }
 
-    fun reports(id:Long?): Observable<Response<ResponseBody>> {
+    fun reports(id: Long?): Observable<Response<ResponseBody>> {
         return retrofitService.reports(id).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun reportAdd(report: ReportPostResource): Observable<Response<ResponseBody>> {
+        return retrofitService.reportAdd(report).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
 }

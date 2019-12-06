@@ -16,6 +16,7 @@ import com.inz.citymonitor.presentation.pages.history.historyDetails.HistoryDeta
 import com.inz.citymonitor.presentation.pages.map.MapFragment
 import com.inz.citymonitor.presentation.pages.map.MapViewModel
 import com.inz.citymonitor.presentation.pages.ranking.RankViewModel
+import com.inz.citymonitor.presentation.pages.report.reportCreator.ReportCreatorViewModel
 import com.inz.citymonitor.presentation.pages.signIn.SignInViewModel
 import com.inz.citymonitor.presentation.pages.signUp.SignUpViewModel
 import dagger.Component
@@ -62,5 +63,7 @@ interface AppComponent {
     fun inject(into: RankViewModel)
 
     fun inject(into: MapViewModel)
+
+    fun inject(into:ReportCreatorViewModel)
 
 }

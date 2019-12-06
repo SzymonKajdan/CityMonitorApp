@@ -1,0 +1,9 @@
+<resources>
+    <string-array name="reportsType">
+        <item name="VANDALISM">wandalizm</item>
+        <item name="HOLE_IN_THE_ROAD">dziura w drodze</item>
+        <item name="COLLISION">człowiek potrzebujący pomocy</item>
+        <item name="PNTH">niedozowlone zachowanie</item>
+        <item name="POTENTIAL_BULLYI1NG">potęcjalne łamanie prawa(zastraszanie)</item>
+    </string-array>
+</resources>

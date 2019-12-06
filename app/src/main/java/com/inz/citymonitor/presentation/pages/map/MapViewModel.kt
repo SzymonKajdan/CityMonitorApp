@@ -9,6 +9,7 @@ import com.inz.citymonitor.data.model.ErrorResponseModel
 import com.inz.citymonitor.data.model.reports.City
 import com.inz.citymonitor.data.rest.RetrofitRepository
 import com.inz.citymonitor.dependecyInjector.Injector
+import com.inz.citymonitor.functional.localStorage.LocalStorage
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
@@ -16,7 +17,8 @@ class MapViewModel : ViewModel() {
     @Inject
     lateinit var retrofit: RetrofitRepository
 
-
+    @Inject
+     lateinit var sharedPref: LocalStorage
     var callResult = MutableLiveData<Any>()
 
     init {
@@ -44,5 +46,8 @@ class MapViewModel : ViewModel() {
 
             }
         )
+    }
+    fun  isLogged():Boolean{
+        return  sharedPref.isLoggedNow();
     }
 }

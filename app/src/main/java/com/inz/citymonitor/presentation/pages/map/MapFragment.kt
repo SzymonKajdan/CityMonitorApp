@@ -31,6 +31,7 @@ import com.inz.citymonitor.data.model.ErrorResponseModel
 import com.inz.citymonitor.data.model.reports.Reports
 import com.inz.citymonitor.presentation.base.BaseFragment
 import com.inz.citymonitor.presentation.pages.history.HistoryFragmentDirections
+import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : BaseFragment(), OnMapReadyCallback {
     override fun setTopBarTitle(): String? {
@@ -93,6 +94,16 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 //                moveCamera(LatLng(it.latitude, it.longitude), 9f)
 //            }
 //        }
+        addReport.setOnClickListener {
+            if (viewModel.isLogged()) {
+                var bundle=Bundle()
+                bundle.putString("lat",lastKnownLocation?.latitude.toString())
+                bundle.putString("long",lastKnownLocation?.longitude.toString())
+                findNavController().navigate(R.id.reportCreatorFragment,bundle)
+            } else {
+                Toast.makeText(context, "Nie jetses zalgowany/a", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         viewModel.getReports()
 
