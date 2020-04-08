@@ -2,6 +2,7 @@ package com.inz.citymonitor.presentation.pages.report.reportCreator
 
 
 import android.Manifest
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -56,27 +57,14 @@ class ReportCreatorFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setSpinner();
+        setSpinner()
 
 
-        reportPhoto.setOnClickListener {
-            if (checkPermission(Manifest.permission.CAMERA)) {
-                var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(intent, PHOTO)
-            } else {
-                sendRequest(Manifest.permission.CAMERA)
-                if (checkPermission(Manifest.permission.CAMERA)) {
-                    var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    startActivityForResult(intent, PHOTO)
-                } else {
-                    Toast.makeText(context, "Brak uprawanien", Toast.LENGTH_SHORT).show()
-                }
-            }
 
-        }
-
+        addPhoto()
         addReport()
         addVideo()
+        addCall()
 
         viewModel.callResult.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -107,8 +95,8 @@ class ReportCreatorFragment : BaseFragment() {
                         }
                     }
                 }
-                is Boolean->{
-                    addReportButton.isEnabled=true
+                is Boolean -> {
+                    addReportButton.isEnabled = true
                 }
 
                 else -> {
@@ -120,26 +108,73 @@ class ReportCreatorFragment : BaseFragment() {
         })
     }
 
-    private fun addVideo() {
-        reportVideo.setOnClickListener {
-            if (checkPermission(Manifest.permission.CAMERA)) {
-                var intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
-                startActivityForResult(intent, VIDEO)
-            } else {
-                sendRequest(Manifest.permission.CAMERA)
-                if (checkPermission(Manifest.permission.CAMERA)) {
-                    var intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
-                    var uri: Uri =
-                        Uri.parse("/data/user/0/com.inz.citymonitor/app_Images/video.mp4")
-                    intent.setDataAndType(uri, "video/*");
+    private fun addCall() {
 
-                    startActivityForResult(intent, VIDEO)
+        call.setOnClickListener {
+            if (checkPermission(Manifest.permission.CALL_PHONE)) {
+                openCall()
+            } else {
+                sendRequest(Manifest.permission.CALL_PHONE)
+                if (checkPermission(Manifest.permission.CALL_PHONE)) {
+                    openCall()
                 } else {
                     Toast.makeText(context, "Brak uprawanien", Toast.LENGTH_SHORT).show()
                 }
             }
 
         }
+    }
+
+    private fun openCall() {
+        var callingAcitivity= Intent(Intent.ACTION_CALL)
+        callingAcitivity.data=Uri.parse("tel:112")
+        startActivity(callingAcitivity)
+    }
+
+    private fun addPhoto() {
+        reportPhoto.setOnClickListener {
+            if (checkPermission(Manifest.permission.CAMERA)) {
+                photoCaputre()
+            } else {
+                sendRequest(Manifest.permission.CAMERA)
+                if (checkPermission(Manifest.permission.CAMERA)) {
+                    photoCaputre()
+                } else {
+                    Toast.makeText(context, "Brak uprawanien", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+    }
+
+    private fun addVideo() {
+
+        reportVideo.setOnClickListener {
+            if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                if (checkPermission(Manifest.permission.CAMERA)) {
+                    videoRecord()
+                } else {
+                    sendRequest(Manifest.permission.CAMERA)
+                    if (checkPermission(Manifest.permission.CAMERA)) {
+                        videoRecord()
+                    } else {
+                        Toast.makeText(context, "Brak uprawanien", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                sendRequest(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+    }
+
+    private fun photoCaputre() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, PHOTO)
+    }
+
+    private fun videoRecord() {
+        val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+        startActivityForResult(intent, VIDEO)
     }
 
     private fun addReport() {
@@ -149,7 +184,7 @@ class ReportCreatorFragment : BaseFragment() {
             } else {
 
                 val permission = "android.permission.ACCESS_FINE_LOCATION";
-                if (context?.checkCallingOrSelfPermission(permission)!!.equals(PackageManager.PERMISSION_GRANTED)) {
+                if (context?.checkCallingOrSelfPermission(permission)!! == PackageManager.PERMISSION_GRANTED) {
 
 
                     var type = getReportType(reportTypeSpinner.selectedItem.toString())
@@ -232,21 +267,20 @@ class ReportCreatorFragment : BaseFragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == PHOTO) {
-            photoUrl = viewModel.getPhoto(data,context)
+        if (requestCode == PHOTO && resultCode == RESULT_OK) {
+            photoUrl = viewModel.getPhoto(data, context)
             viewModel.addPhoto(photoUrl)
-            Toast.makeText(context,"Zapisywanei zdjecia",Toast.LENGTH_SHORT).show()
-            addReportButton.isEnabled=false
+            Toast.makeText(context, "Zapisywanei zdjecia", Toast.LENGTH_SHORT).show()
+            addReportButton.isEnabled = false
         }
-        if (requestCode == VIDEO) {
+        if (requestCode == VIDEO && resultCode == RESULT_OK) {
             val videoUri: Uri? = data?.data
 
-            viewModel.addVideo(viewModel.path(videoUri,context))
-            Toast.makeText(context,"Zapisywanei zdjecia",Toast.LENGTH_SHORT).show()
-            addReportButton.isEnabled=false
+            viewModel.addVideo(viewModel.path(videoUri, context))
+            Toast.makeText(context, "Zapisywanei zdjecia", Toast.LENGTH_SHORT).show()
+            addReportButton.isEnabled = false
         }
     }
-
 
 
 }

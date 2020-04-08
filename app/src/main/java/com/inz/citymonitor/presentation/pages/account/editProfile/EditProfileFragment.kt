@@ -54,7 +54,7 @@ class EditProfileFragment : BaseFragment() {
             if (!lastname.text.isNullOrBlank()) {
                 lastName = lastname.text?.toString();
             }
-            if (lastName != null && firstName != null && emailAdress != null && username != null) {
+            if (lastName != null || firstName != null || emailAdress != null || username != null) {
                 if (checkFields(lastName, username, firstName, emailAdress))
                     viewModel.editProfile(username, emailAdress, firstName, lastName)
             } else {
@@ -132,7 +132,7 @@ class EditProfileFragment : BaseFragment() {
             if (EMAIL.toRegex().find(email.text.toString()) == null) {
                 Toast.makeText(
                     context,
-                    "Adres mail nie poprawny ",
+                    "Adres mail niepoprawny ",
                     Toast.LENGTH_SHORT
                 ).show()
                 return false

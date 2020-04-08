@@ -86,7 +86,7 @@ class SignUpFragment : BaseFragment() {
         if (userName.text.toString().length < 4 || userName.text.toString().length > 30) {
             Toast.makeText(
                 context,
-                "Nazwa użytkownika powinna wynosci od 4 do 10 znaków ",
+                "Nazwa użytkownika powinna mieć od 4 do 10 znaków ",
                 Toast.LENGTH_SHORT
             ).show()
             return false;
@@ -94,7 +94,7 @@ class SignUpFragment : BaseFragment() {
         if (password.text.toString().length < 4 || password.text.toString().length > 20) {
             Toast.makeText(
                 context,
-                "Nazwa użytkokonwika powinna wynosci od 4 do 20 znaków ",
+                "Nazwa użytkokonwika powinna mieć od 4 do 20 znaków ",
                 Toast.LENGTH_SHORT
             ).show()
             return false;
@@ -111,7 +111,7 @@ class SignUpFragment : BaseFragment() {
         if (email.text.toString().length < 4 || email.text.toString().length > 30) {
             Toast.makeText(
                 context,
-                "Adres mail powinein miesicic w przedziale  od 4 do 30 znaków  ",
+                "Adres mail powinein mieścić w przedziale  od 4 do 30 znaków  ",
                 Toast.LENGTH_SHORT
             ).show()
             return false;

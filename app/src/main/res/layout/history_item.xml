@@ -8,39 +8,37 @@
 
 
     <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:id="@+id/rate"
             tools:text="5.0"
             android:gravity="center"
-            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/type"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:padding="24dp"
+            android:layout_margin="8dp"
             android:background="@color/noactive"
     />
     <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/type"
-            tools:text="Typ"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/rate"
-            app:layout_constraintEnd_toStartOf="@id/photo"
+            tools:text="Typ\nnextline"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/rate"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:padding="24dp"
+            app:layout_constraintStart_toStartOf="@id/rate"
+            app:layout_constraintEnd_toStartOf="@id/photo"
+            android:layout_margin="8dp"
     />
     <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/photo"
-            tools:text="Data Zgloszenia "
+            tools:text="Data Zgloszenia"
+            app:layout_constraintDimensionRatio="4:3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/type"
             app:layout_constraintEnd_toEndOf="parent"
 
     />
@@ -51,6 +49,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name"
     />
 </androidx.constraintlayout.widget.ConstraintLayout>

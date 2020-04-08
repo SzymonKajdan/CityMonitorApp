@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -107,8 +108,13 @@ class HistoryDetailsFragment : BaseFragment(), OnMapReadyCallback {
             .into(reportPhoto)
         isActive.text = if (it.isActive) "Aktywne " else " Nie aktwyne "
         dateReport.text = it.reportDate
-        if (it.video != null)
+        if (it.video != null) {
             video.setVideoURI(Uri.parse(it.video))
+            var mediaController: MediaController = MediaController(context);
+            mediaController.setAnchorView(this.view)
+            mediaController.setMediaPlayer(video)
+            video.setMediaController(mediaController)
+        }
         else {
             map.visibility = View.VISIBLE
             video.visibility = View.GONE
@@ -120,13 +126,13 @@ class HistoryDetailsFragment : BaseFragment(), OnMapReadyCallback {
     private fun setMarker(it: ReportDetailsModel) {
 
         map.getMapAsync { m ->
-            var latLng=LatLng(it.latitude.toDouble(),it.longitude.toDouble())
+            var latLng = LatLng(it.latitude.toDouble(), it.longitude.toDouble())
             m.addMarker(
                 MarkerOptions().position(
-                 latLng
+                    latLng
                 )
             )
-            m.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10f))
+            m.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
         }
     }
 

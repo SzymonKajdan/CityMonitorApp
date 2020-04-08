@@ -31,6 +31,7 @@ import com.inz.citymonitor.data.model.ErrorResponseModel
 import com.inz.citymonitor.data.model.reports.Reports
 import com.inz.citymonitor.presentation.base.BaseFragment
 import com.inz.citymonitor.presentation.pages.history.HistoryFragmentDirections
+import com.inz.citymonitor.presentation.pages.report.reportInfo.ReportInfoFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : BaseFragment(), OnMapReadyCallback {
@@ -96,10 +97,10 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
 //        }
         addReport.setOnClickListener {
             if (viewModel.isLogged()) {
-                var bundle=Bundle()
-                bundle.putString("lat",lastKnownLocation?.latitude.toString())
-                bundle.putString("long",lastKnownLocation?.longitude.toString())
-                findNavController().navigate(R.id.reportCreatorFragment,bundle)
+                var bundle = Bundle()
+                bundle.putString("lat", lastKnownLocation?.latitude.toString())
+                bundle.putString("long", lastKnownLocation?.longitude.toString())
+                findNavController().navigate(R.id.reportCreatorFragment, bundle)
             } else {
                 Toast.makeText(context, "Nie jetses zalgowany/a", Toast.LENGTH_SHORT).show()
             }
@@ -303,12 +304,16 @@ class MapFragment : BaseFragment(), OnMapReadyCallback {
     private fun setCluster() {
         clusterManager = ClusterManager(context, map)
         clusterManager!!.setOnClusterItemClickListener { reports ->
-            Toast.makeText(context, reports.id.toString(), Toast.LENGTH_SHORT).show()
-            findNavController().navigate(
-                HistoryFragmentDirections.toHistoryDetailsFragment(
-                    reports.id
-                )
-            )
+            //            Toast.makeText(context, reports.id.toString(), Toast.LENGTH_SHORT).show()
+//            findNavController().navigate(
+//                HistoryFragmentDirections.toHistoryDetailsFragment(
+//                    reports.id
+//                )
+//            )
+            activity?.supportFragmentManager?.let {
+                ReportInfoFragment.newInstance(reports.id).show(it, "Tag")
+            }
+
             requestingLocationUpdates
         }
 

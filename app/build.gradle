@@ -89,5 +89,8 @@ dependencies {
     // implementation 'com.google.firebase:firebase-storage:19.1.0'
     // using kotlin implementation
     implementation 'com.google.firebase:firebase-storage-ktx:19.1.0'
+
+    //joda
+    implementation "joda-time:joda-time:2.10.5"
 }
 apply plugin: 'com.google.gms.google-services'

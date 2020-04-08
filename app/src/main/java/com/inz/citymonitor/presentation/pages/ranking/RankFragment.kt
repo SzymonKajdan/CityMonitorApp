@@ -45,7 +45,7 @@ class RankFragment : BaseFragment() {
                  Toast.makeText(context,it.code+" "+it.details,Toast.LENGTH_SHORT).show()
              }
                 is ArrayList<*>->{
-
+                    it.reverse()
                     adapter.setData(it as List<RankingModel>)
 
                 }

@@ -9,5 +9,6 @@ data class HistoryModelLight(
     var description: String,
     var photo: String?,
     var isActive: Boolean,
-    var reportType: String
+    var reportType: String,
+    var reportDate:String
 )

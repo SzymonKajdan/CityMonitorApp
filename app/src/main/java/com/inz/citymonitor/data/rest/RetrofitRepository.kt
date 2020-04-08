@@ -4,6 +4,8 @@ import com.inz.citymonitor.data.model.PasswordModel.PasswordChangeModel
 import com.inz.citymonitor.data.model.User.EditUser
 import com.inz.citymonitor.data.model.User.SignInUser
 import com.inz.citymonitor.data.model.User.SignUpUser
+import com.inz.citymonitor.data.model.reports.FalseNotActiveModel
+import com.inz.citymonitor.data.model.reports.MarkModel
 import com.inz.citymonitor.data.model.reports.ReportPostResource
 import com.inz.citymonitor.dependecyInjector.Injector
 import io.reactivex.Observable
@@ -66,6 +68,21 @@ class RetrofitRepository @Inject constructor(var retrofitService: RetrofitServic
 
     fun reportAdd(report: ReportPostResource): Observable<Response<ResponseBody>> {
         return retrofitService.reportAdd(report).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun markAdd(model: MarkModel): Observable<Response<ResponseBody>> {
+        return retrofitService.markAdd(model).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun falseReport(model: FalseNotActiveModel): Observable<Response<ResponseBody>> {
+        return retrofitService.markAsFalse(model).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun notActiveReport(model: FalseNotActiveModel): Observable<Response<ResponseBody>> {
+        return retrofitService.markAsNotActive(model).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
 }

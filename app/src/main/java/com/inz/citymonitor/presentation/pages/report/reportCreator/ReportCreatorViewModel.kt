@@ -174,11 +174,11 @@ class ReportCreatorViewModel : ViewModel() {
                 videoFireStore=downloadUri
                 callResult.postValue(true)
 
-            } else {
-                Log.d(TAG,"fail")
-            }
+           } else {
+        Log.d(TAG,"fail")
+    }
 
-        }
+}
 
     }
     fun path(v: Uri?,context: Context?): String? {
@@ -194,3 +194,4 @@ class ReportCreatorViewModel : ViewModel() {
     }
 
 }
+

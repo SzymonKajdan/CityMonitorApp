@@ -4,6 +4,8 @@ import com.inz.citymonitor.data.model.PasswordModel.PasswordChangeModel
 import com.inz.citymonitor.data.model.User.EditUser
 import com.inz.citymonitor.data.model.User.SignInUser
 import com.inz.citymonitor.data.model.User.SignUpUser
+import com.inz.citymonitor.data.model.reports.FalseNotActiveModel
+import com.inz.citymonitor.data.model.reports.MarkModel
 import com.inz.citymonitor.data.model.reports.ReportPostResource
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -46,4 +48,13 @@ interface RetrofitService {
 
     @POST(value = "reports/addReport")
     fun reportAdd(@Body report: ReportPostResource): Observable<Response<ResponseBody>>
+
+    @POST(value = "reports/addMark")
+    fun markAdd(@Body report: MarkModel): Observable<Response<ResponseBody>>
+
+    @POST(value = "reports/markAsFalse")
+    fun markAsFalse(@Body report: FalseNotActiveModel):Observable<Response<ResponseBody>>
+
+    @POST(value = "reports/markAsNotActive")
+    fun markAsNotActive(@Body report: FalseNotActiveModel):Observable<Response<ResponseBody>>
 }

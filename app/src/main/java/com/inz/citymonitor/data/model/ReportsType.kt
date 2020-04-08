@@ -5,7 +5,7 @@ enum class ReportsType(val type:String) {
     HOLE_IN_THE_ROAD("dziura w drodze"),
     COLLISION("kolizja"),
     PNTH("człowiek potrzebujący pomocy"),
-    INAPPROPRIATE_BEHAVIURS("niedozowlone zachowanie"),
-    POTENTIAL_BULLYING("potęcjalne łamanie prawa(zastraszanie)");
+    INAPPROPRIATE_BEHAVIURS("niedozwolone zachowanie"),
+    POTENTIAL_BULLYING("potencjalne łamanie prawa (zastraszanie)");
 
 }

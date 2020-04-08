@@ -44,24 +44,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Zdjęcie / Film" />
+                android:text="Zdjęcie" />
         <Button
                 android:id="@+id/reportVideo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Zdjęcie / Film" />
+                android:text="Film" />
 
         <Button
                 android:id="@+id/addReportButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Dodaj nowe Zgloszneie " />
-        <VideoView
-                android:layout_width="wrap_content"
+                android:text="Dodaj nowe zgłoszenie " />
+
+        <Button
+                android:id="@+id/call"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/video"/>
+                android:layout_marginTop="24dp"
+                android:text="Powiadom słuzby "/>
 
     </LinearLayout>
 
